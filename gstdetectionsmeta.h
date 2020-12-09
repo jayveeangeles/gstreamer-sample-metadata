@@ -32,6 +32,9 @@ typedef struct
 
 } GstDetectionMetas;
 
+GstObjectDetectionMeta* gst_detectionmetas_get_info_detections(GstBuffer*);
+guint gst_detectionmetas_get_info_detections_count(GstBuffer*);
+
 G_END_DECLS
 /* */
 #endif /* __GST_DETECTIONS_META_H__ */

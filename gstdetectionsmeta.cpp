@@ -63,3 +63,27 @@ gst_detectionmetas_get_info (void)
 
   return meta_info;
 }
+
+// Only for Python : return GstBufferInfo instead of GstBufferInfoMeta
+// To avoid GstMeta (C) map to Gst.Meta (Python)
+GstObjectDetectionMeta* gst_detectionmetas_get_info_detections(GstBuffer* buffer)
+{   
+  GstDetectionMetas *meta = \
+    (GstDetectionMetas *) gst_buffer_get_meta (buffer, gst_detectionmetas_api_get_type());
+
+  if (meta == NULL)
+    return NULL;
+  else
+    return meta->detections;   
+}
+
+guint gst_detectionmetas_get_info_detections_count(GstBuffer* buffer)
+{   
+  GstDetectionMetas *meta = \
+    (GstDetectionMetas *) gst_buffer_get_meta (buffer, gst_detectionmetas_api_get_type());
+
+  if (meta == NULL)
+    return 0;
+  else
+    return meta->detections_count;   
+}

@@ -63,3 +63,26 @@ gst_trackedmetas_get_info (void)
 
   return meta_info;
 }
+// Only for Python : return GstBufferInfo instead of GstBufferInfoMeta
+// To avoid GstMeta (C) map to Gst.Meta (Python)
+GstTrackedMeta* gst_trackedmetas_get_info_tracked(GstBuffer* buffer)
+{   
+  GstTrackedMetas *meta = \
+    (GstTrackedMetas *) gst_buffer_get_meta (buffer, gst_trackedmetas_api_get_type());
+
+  if (meta == NULL)
+    return NULL;
+  else
+    return meta->tracked;   
+}
+
+guint gst_trackedmetas_get_info_tracked_count(GstBuffer* buffer)
+{   
+  GstTrackedMetas *meta = \
+    (GstTrackedMetas *) gst_buffer_get_meta (buffer, gst_trackedmetas_api_get_type());
+
+  if (meta == NULL)
+    return 0;
+  else
+    return meta->tracked_count;   
+}

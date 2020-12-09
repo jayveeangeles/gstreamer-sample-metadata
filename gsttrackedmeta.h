@@ -33,6 +33,9 @@ typedef struct
 
 } GstTrackedMetas;
 
+GstTrackedMeta* gst_trackedmetas_get_info_tracked(GstBuffer*);
+guint gst_trackedmetas_get_info_tracked_count(GstBuffer*);
+
 G_END_DECLS
 /* */
 #endif /* __GST_TRACKED_META_H__ */
